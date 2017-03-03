@@ -27,10 +27,13 @@ function saveForm (req, res){
   var entries = JSON.parse(entriesString)
 
   entries.push(req.body)
-
+//live
   fs.writeFile('./planner.txt', JSON.stringify(entries), function(err){
     res.redirect('/home')
-
+  })
+  //test
+  fs.writeFile('./test.txt', JSON.stringify(entries), function(err){
+    res.redirect('/home')
   })
 
 }
