@@ -31,9 +31,6 @@ function saveForm (req, res){
   fs.writeFile('./planner.txt', JSON.stringify(entries), function(err){
     res.redirect('/home')
   })
-  //test
-  fs.writeFile('./test.txt', JSON.stringify(entries), function(err){
-    res.redirect('/home')
-  })
+  
 
 }
