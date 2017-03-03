@@ -11,11 +11,9 @@ function home (req, res) {
 
   var plannerDataString = fs.readFileSync('./planner.txt').toString()
   var plannerData = JSON.parse(plannerDataString)
-  console.log(typeof plannerData);
   // give the data to the template to be rendered
     res.render('home', {
       plannerData: plannerData
-
     })
 }
 
@@ -31,7 +29,6 @@ function saveForm (req, res){
   entries.push(req.body)
 
   fs.writeFile('./planner.txt', JSON.stringify(entries), function(err){
-    console.log(entries);
     res.redirect('/home')
 
   })
