@@ -7,7 +7,16 @@ module.exports = {
 }
 
 function home (req, res) {
-  res.render('home')
+  // get the data out of the planner.txt
+
+  var plannerDataString = fs.readFileSync('./planner.txt').toString()
+  var plannerData = JSON.parse(plannerDataString)
+  console.log(typeof plannerData);
+  // give the data to the template to be rendered
+    res.render('home', {
+      plannerData: plannerData
+
+    })
 }
 
 function form (req, res) {
@@ -16,14 +25,14 @@ function form (req, res) {
 
 function saveForm (req, res){
 
-  var nameString = fs.readFileSync('./planner.txt').toString()
-  var names = JSON.parse(nameString)
+  var entriesString = fs.readFileSync('./planner.txt').toString()
+  var entries = JSON.parse(entriesString)
 
-  names.push(req.body)
-  
-  fs.writeFile('./planner.txt', JSON.stringify(names), function(err){
-    console.log(names);
-        res.redirect('/home')
+  entries.push(req.body)
+
+  fs.writeFile('./planner.txt', JSON.stringify(entries), function(err){
+    console.log(entries);
+    res.redirect('/home')
 
   })
 
